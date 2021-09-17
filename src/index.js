@@ -1,14 +1,9 @@
-const menu = document.getElementByID('dropdown-menu');
-menu.classList.toggle('show');
+import './style.css';
 
-const button = document.getElementById('dropdown-button');
+const menu = document.querySelector('.dropdown-menu');
+
+const button = document.querySelector('.dropdown-button');
 button.addEventListener('click', () => {
-    const dropdownContent = document.getElementById('dropdown-content');
-    for (let i = 0; i < dropdownContent.length; i++) {
-        const dropdown = dropdownContent[i];
-        if (dropdown.classList.contains('show')) {
-            dropdown.classList.remove('show')
-        }
-    }
-})
-
+    const dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.classList.toggle('show');
+});
