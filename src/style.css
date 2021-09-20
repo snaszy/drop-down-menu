@@ -1,17 +1,58 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
-    font: 400 13.3333px Arial
+    font: 400 13.3333px Arial;
 }
-
-button {
-    margin: 5px;
-    cursor: pointer;
-    border: none;
-    background: white;
+.navbar {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+.hamburger-button {
+    position: relative;
+    margin: 15px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+.hamburger-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
 }
 .dropdown-menu {
     position: relative;
     display: inline-block;
+}
+.dropdown-button {
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background: white;
+    color: gray;
+}
+.dropdown-menu.show > .dropdown-button,
+.dropdown-button:hover {
+    color: black;
+}
+.dropdown-content {
+    position: absolute;
+    display: flex;
+    margin: 5px 10px;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.dropdown-menu.show > .dropdown-button + .dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 .triangle {
     margin-left: 15px;
@@ -19,28 +60,16 @@ button {
     height: 0px;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid rgba(153, 153, 153, 0.2);
-}
-.dropdown-content {
-    display: flex;
-    margin: 5px 10px;
-    flex-direction: column;
-    transform: scale(0, 0);
-    transition: transform 300ms ease-in-out;
+    border-bottom: 10px solid lightgray;
 }
 .links {
     display: grid;
     grid: 1fr / auto;
     min-width: 100px;
-    background-color: rgba(153, 153, 153, 0.2);
+    background-color: lightgray;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     z-index: 1;
-}
-.show {
-    display: flex;
-    transform-origin: top;
-    transform: scale(1, 1);
 }
 a {
     text-decoration: none;
@@ -49,4 +78,32 @@ a {
 }
 a:hover {
     color: gray;
+}
+@media (max-width: 400px) {
+    .hamburger-button {
+        display: flex;
+    }
+    .navbar{
+        flex-direction: column;
+    }
+    .dropdown-menu {
+        display: none;
+        width: 100%;
+        text-align: center;
+    }
+    .dropdown-menu.active {
+        display: inline-block;
+    }
+    .dropdown-menu.show > .dropdown-button + .dropdown-content {
+        position: relative;
+    }
+    .triangle {
+        display: none;
+    }
+    .active {
+        display: inline-block;
+    }
+    .links {
+        width: 100%;
+    }
 }
